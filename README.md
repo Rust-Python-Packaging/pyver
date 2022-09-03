@@ -25,4 +25,4 @@ assert_eq!(a < b, true);
 
 ## Contribution
 
-For now Contributions will be quite loose but soon we will be switching to a rolling release model
+For now Contributions will be quite loose.

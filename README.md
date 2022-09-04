@@ -6,7 +6,9 @@
 
 > **Python PEP-440 Version Parser**
 
-This package allows for parsing Python [PEP-440](https://peps.python.org/pep-0440/) version numbers and for comparisons between [PEP-440](https://peps.python.org/pep-0440/) version numbers.
+This package allows for parsing Python [PEP-440](https://peps.python.org/pep-0440/)
+version numbers and for comparisons between
+[PEP-440](https://peps.python.org/pep-0440/) version numbers.
 
 ## Usage
 

@@ -185,113 +185,18 @@ impl fmt::Display for PackageVersion {
 
 #[cfg(test)]
 mod tests {
-    use std::fmt::Debug;
-
     use crate::PackageVersion;
-    use anyhow::bail;
     use anyhow::Result;
-
-    use crate::DevHead;
-    use crate::PostHead;
-    use crate::PostHeader;
-    use crate::PreHeader;
-    use crate::ReleaseHeader;
-
-    fn test_a_greater<T>(a: T, b: T) -> Result<()>
-    where
-        T: PartialEq + PartialOrd + Debug,
-    {
-        if a <= b {
-            bail!(
-                "Failed Less Than or Equal Check for A: {:?} \n<=\n B: {:?}",
-                a,
-                b
-            )
-        }
-        Ok(())
-    }
 
     #[test]
     fn test_pep440_ordering() -> Result<()> {
-        test_a_greater(
+        assert!(
             PackageVersion::new(
                 "v1!1.0-preview-921.post-516.dev-241+yeah.this.is.the.problem.with.local.versions",
-            )?,
-            PackageVersion::new("1.0")?,
-        )?;
-        Ok(())
-    }
-
-    #[test]
-    fn test_release_ordering() -> Result<()> {
-        test_a_greater(
-            ReleaseHeader { major: 1, minor: 0 },
-            ReleaseHeader { major: 0, minor: 0 },
-        )?;
-        test_a_greater(
-            ReleaseHeader { major: 1, minor: 1 },
-            ReleaseHeader { major: 1, minor: 0 },
-        )?;
-        test_a_greater(
-            ReleaseHeader { major: 2, minor: 1 },
-            ReleaseHeader {
-                major: 1,
-                minor: 52,
-            },
-        )?;
-        Ok(())
-    }
-
-    #[test]
-    fn test_pre_ordering() -> Result<()> {
-        test_a_greater(PreHeader::ReleaseCandidate(None), PreHeader::Preview(None))?;
-        test_a_greater(PreHeader::Preview(None), PreHeader::Alpha(None))?;
-        test_a_greater(PreHeader::Alpha(None), PreHeader::Beta(None))?;
-
-        test_a_greater(
-            PreHeader::ReleaseCandidate(Some(2)),
-            PreHeader::ReleaseCandidate(Some(1)),
-        )?;
-        test_a_greater(PreHeader::Preview(Some(50)), PreHeader::Preview(Some(3)))?;
-        test_a_greater(PreHeader::Alpha(Some(504)), PreHeader::Alpha(Some(0)))?;
-        test_a_greater(PreHeader::Beta(Some(1234)), PreHeader::Beta(Some(1)))?;
-
-        test_a_greater(
-            PreHeader::ReleaseCandidate(Some(1)),
-            PreHeader::Beta(Some(45067885)),
-        )?;
-        Ok(())
-    }
-
-    #[test]
-    fn test_post_ordering() -> Result<()> {
-        test_a_greater(
-            PostHeader {
-                post_head: Some(PostHead::Post),
-                post_num: Some(0),
-            },
-            PostHeader {
-                post_head: Some(PostHead::Post),
-                post_num: None,
-            },
-        )?;
-        test_a_greater(
-            PostHeader {
-                post_head: Some(PostHead::Post),
-                post_num: Some(1),
-            },
-            PostHeader {
-                post_head: Some(PostHead::Post),
-                post_num: Some(0),
-            },
-        )?;
-        Ok(())
-    }
-
-    #[test]
-    fn test_dev_ordering() -> Result<()> {
-        test_a_greater(DevHead { dev_num: Some(0) }, DevHead { dev_num: None })?;
-        test_a_greater(DevHead { dev_num: Some(1) }, DevHead { dev_num: Some(0) })?;
+            )?
+            >
+            PackageVersion::new("1.0")?
+        );
         Ok(())
     }
 

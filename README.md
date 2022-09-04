@@ -1,6 +1,7 @@
 # PyVer
 
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE-MIT) [![🧪 Tests](https://github.com/Allstreamer/pyver/actions/workflows/tests.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/tests.yml) [![🖋  Check linting](https://github.com/Allstreamer/pyver/actions/workflows/lint.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/lint.yml) [![🔨 Build](https://github.com/Allstreamer/pyver/actions/workflows/build.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/build.yml) [![📦 Package](https://github.com/Allstreamer/pyver/actions/workflows/package.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/package.yml) [![📄 Build docs](https://github.com/Allstreamer/pyver/actions/workflows/docs.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/docs.yml) [![👔 Check formatting](https://github.com/Allstreamer/pyver/actions/workflows/format.yml/badge.svg)](https://github.com/Allstreamer/pyver/actions/workflows/format.yml)
+<!-- {::ignore rule="MD013" relative_line="-1"} -->
 
 > **Python PEP-440 Version Parser**
 

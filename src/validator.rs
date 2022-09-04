@@ -3,7 +3,7 @@ use lazy_static::lazy_static;
 use pomsky_macro::pomsky;
 use regex::Captures;
 
-/// Utility Function for Checking if a PEP-440 Version String is valid
+/// Utility Function for Checking if a `PEP-440` Version String is valid
 /// and getting it's groups
 ///
 /// # Example Usage

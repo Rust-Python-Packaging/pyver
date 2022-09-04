@@ -1,8 +1,37 @@
-//! # Handling of `PEP-440`
-//!
-//! This library implements Pythons Package versioning system.
-//! Read more at <https://peps.python.org/pep-0440/>
+/*!
+# Handling of `PEP-440`
+This library implements Pythons Package versioning system.
 
+Read more at <https://peps.python.org/pep-0440/>
+
+# Usage
+The `pyver` crate is available on [crates.io](https://crates.io/crates/pyver),
+you can include it in your project by adding the following to your `Cargo.toml`.
+```toml
+[dependencies]
+pyver = "0.1"
+```
+# Example
+The following example shows how to parse a package version and
+how to compare them
+```
+use pyver::PackageVersion;
+
+let a = PackageVersion::new("v1.0a2.dev456").unwrap();
+let b = PackageVersion::new("v1.1a2.dev457").unwrap();
+
+assert!(a < b);
+```
+
+If you want to verify single version strings do
+```
+use pyver::validate_440_version;
+
+assert!(
+    validate_440_version("1.0").is_ok()
+);
+```
+*/
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::fmt;
@@ -13,16 +42,15 @@ extern crate derivative;
 mod validator;
 pub use validator::validate_440_version;
 
-/// Make Identifiers module available for lib user
+/// Identifiers (i.e. the components of a version string)
 pub mod ids;
 use ids::{DevHead, PostHead, PostHeader, PreHeader, ReleaseHeader};
 
 /// `PEP-440` Compliant versioning system
 ///
-/// This struct is sorted so that PartialOrd
-/// correctly interprets priority
-///
-/// Lower == More important
+//# This struct is sorted so that PartialOrd
+//# correctly interprets priority
+//# Lower == More important
 ///
 /// # Example Usage
 /// ```
@@ -32,10 +60,14 @@ use ids::{DevHead, PostHead, PostHeader, PreHeader, ReleaseHeader};
 #[derive(Derivative, Debug, Serialize, Deserialize)]
 #[derivative(PartialOrd, PartialEq)]
 pub struct PackageVersion {
+    /// ## Original String
+    /// Just holds the original string passed in when creating
+    /// the `PackageVersion` as some formating data is lost
+    /// when parsing the string
     #[derivative(PartialOrd = "ignore", PartialEq = "ignore")]
     pub original: String,
 
-    /// # `PEP-440` Local version identifier
+    /// ## `PEP-440` Local version identifier
     /// Local version sorting will have to be it's own issue
     /// since there are no limits to what a local version can be
     ///
@@ -43,26 +75,26 @@ pub struct PackageVersion {
     /// `[a-z0-9]+(?:(?:[\-_.][a-z0-9]+)+)?`
     ///
     /// Here in Rulex:
-    /// ```ignore
+    /// ```toml
     ///  ['a'-'z' '0'-'9']+
     ///  ((["-" "_" "."] ['a'-'z' '0'-'9']+)+)?
     /// ```
     #[derivative(PartialOrd = "ignore", PartialEq = "ignore")]
     pub local: Option<String>,
 
-    /// # `PEP-440` Developmental release identifier
+    /// ## `PEP-440` Developmental release identifier
     pub dev: Option<DevHead>,
 
-    /// # `PEP-440` Post-Release identifier
+    /// ## `PEP-440` Post-Release identifier
     pub post: Option<PostHeader>,
 
-    /// # `PEP-440` Pre-Release identifier
+    /// ## `PEP-440` Pre-Release identifier
     pub pre: Option<PreHeader>,
 
-    /// # `PEP-440` Release number
+    /// ## `PEP-440` Release number
     pub release: ReleaseHeader,
 
-    /// # `PEP-440` Version-Epoch
+    /// ## `PEP-440` Version-Epoch
     pub epoch: Option<u32>,
 }
 

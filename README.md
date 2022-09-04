@@ -4,7 +4,8 @@
 
 > **Python PEP-440 Version Parsing**
 
-This package allows for parsing Python PEP-440 version numbers and comparisons between PEP-440 Versions
+This package allows for parsing Python PEP-440 version numbers and comparisons
+between PEP-440 Versions
 
 ## Usage
 
@@ -21,7 +22,6 @@ let b = PackageVersion::new("v1.0a2.dev457").unwrap();
 
 assert_eq!(a < b, true);
 ```
-
 
 ## Contribution
 

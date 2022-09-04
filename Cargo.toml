@@ -1,10 +1,13 @@
 [package]
 name = "pyver"
-description = "Python PEP-440 Version Parsing"
-authors = ["Allstreamer <allstreamer.contact@gmail.com>"]
+description = "Python PEP-440 Version Parser"
+authors = [
+    "Allstreamer <allstreamer.contact@gmail.com>",
+    "Jan Bronicki <janbronicki@gmail.com>",
+]
 license = "MIT"
 version = "0.1.0"
-keywords = ["versions", "python"]
+keywords = ["versions", "python", "parser", "semver", "pep-440"]
 readme = "README.md"
 edition = "2021"
 repository = "https://github.com/Allstreamer/pyver"

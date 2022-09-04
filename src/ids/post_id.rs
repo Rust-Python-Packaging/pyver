@@ -2,6 +2,27 @@ use serde::{Deserialize, Serialize};
 use std::cmp::Ordering;
 
 /// # `PEP-440` Post-Release identifier
+/// This identifier is used to mark a Post Release/Revision Version
+/// 
+/// Examples of versions that use this struct:
+/// - `1.0.post456`
+/// - `1.0rev`
+/// 
+/// ## Example Usage
+/// ```
+/// use pyvar::PostHeader;
+/// use pyvar::PostHead;
+/// 
+/// assert!(
+///     PostHeader {
+///         post_head: Some(PostHead::Post),
+///         post_num: Some(0),
+///     } > PostHeader {
+///         post_head: Some(PostHead::Post),
+///         post_num: None,
+///     }
+/// );
+/// ```
 #[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct PostHeader {
     pub post_head: Option<PostHead>,

@@ -23,6 +23,15 @@ jobs:
               with:
                 toolchain: ${{ matrix.toolchain }}
             - uses: actions/checkout@v2
+            - uses: actions/cache@v3
+              with:
+                path: |
+                  ~/.cargo/bin/
+                  ~/.cargo/registry/index/
+                  ~/.cargo/registry/cache/
+                  ~/.cargo/git/db/
+                  target/
+                key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
             - name: Run tests
               run: cargo test --verbose
 

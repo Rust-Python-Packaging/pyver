@@ -162,7 +162,8 @@ impl PackageVersion {
             None => None,
         };
 
-        let local: Option<String> = version_match.name("local").map(|v| v.as_str().to_string());
+        let local: Option<String> =
+            version_match.name("local").map(|v| v.as_str().to_string());
 
         Ok(Self {
             original: version.to_string(),

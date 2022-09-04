@@ -3,16 +3,16 @@ use std::cmp::Ordering;
 
 /// # `PEP-440` Post-Release identifier
 /// This identifier is used to mark a Post Release/Revision Version
-/// 
+///
 /// Examples of versions that use this struct:
 /// - `1.0.post456`
 /// - `1.0rev`
-/// 
+///
 /// ## Example Usage
 /// ```
 /// use pyver::ids::PostHeader;
 /// use pyver::ids::PostHead;
-/// 
+///
 /// assert!(
 ///     PostHeader {
 ///         post_head: Some(PostHead::Post),
@@ -32,7 +32,7 @@ pub struct PostHeader {
 /// `PEP-440` Post-Release Identifier Keyword
 /// This is a helper enum to tack whether it's a Revision or
 /// a Post-Release
-/// 
+///
 /// Examples of versions that use this enum:
 /// - `1.0.post456`
 /// - `1.0rev`
@@ -40,13 +40,13 @@ pub struct PostHeader {
 pub enum PostHead {
     /// ```
     /// use pyver::ids::PostHead;
-    /// 
+    ///
     /// PostHead::Post;
     /// ```
     Post,
-        /// ```
+    /// ```
     /// use pyver::ids::PostHead;
-    /// 
+    ///
     /// PostHead::Rev;
     /// ```
     Rev,

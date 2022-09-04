@@ -12,7 +12,7 @@ you can include it in your project by adding the following to your `Cargo.toml`.
 pyver = "0.1"
 ```
 # Example
-The following example shows how to parse a package version and 
+The following example shows how to parse a package version and
 how to compare them
 ```
 use pyver::PackageVersion;
@@ -61,7 +61,7 @@ use ids::{DevHead, PostHead, PostHeader, PreHeader, ReleaseHeader};
 #[derivative(PartialOrd, PartialEq)]
 pub struct PackageVersion {
     /// ## Original String
-    /// Just holds the original string passed in when creating 
+    /// Just holds the original string passed in when creating
     /// the `PackageVersion` as some formating data is lost
     /// when parsing the string
     #[derivative(PartialOrd = "ignore", PartialEq = "ignore")]

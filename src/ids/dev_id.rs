@@ -2,15 +2,15 @@ use serde::{Deserialize, Serialize};
 
 /// # `PEP-440` Developmental release identifier
 /// This identifier is used to mark a developmental release
-/// 
+///
 /// Examples of versions that use this struct:
 /// - `1.0.dev456`
 /// - `1.0rc1.dev1`
-/// 
+///
 /// ## Example Usage
 /// ```
 /// use pyver::ids::DevHead;
-/// 
+///
 /// assert!(
 ///     DevHead { dev_num: Some(0) }
 ///     >

@@ -1,0 +1,31 @@
+name: 🖋  Check linting
+
+on:
+    pull_request:
+    push:
+        branches: ["main", "develop"]
+
+env:
+    CARGO_TERM_COLOR: always
+
+jobs:
+    check_lint_rust:
+        name: 🖋 Check linting
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Check linting
+              run: |
+                  rustup component add clippy
+                  set env RUSTFLAGS="-Dwarnings"
+                  cargo clippy --workspace -- -D warnings
+    check_lint_markdown:
+        name: 🖋 Check markdown files
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out code
+              uses: actions/checkout@v2
+            - name: Markdown Linting Action
+              uses: avto-dev/markdown-lint@v1.5.0
+              with:
+                  args: "*.md"

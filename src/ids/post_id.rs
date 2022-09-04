@@ -40,3 +40,31 @@ impl PartialOrd for PostHeader {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::PostHead;
+    use super::PostHeader;
+
+    #[test]
+    fn test_post_ordering() {
+        assert!(
+            PostHeader {
+                post_head: Some(PostHead::Post),
+                post_num: Some(0),
+            } > PostHeader {
+                post_head: Some(PostHead::Post),
+                post_num: None,
+            }
+        );
+        assert!(
+            PostHeader {
+                post_head: Some(PostHead::Post),
+                post_num: Some(1),
+            } > PostHeader {
+                post_head: Some(PostHead::Post),
+                post_num: Some(0),
+            }
+        );
+    }
+}

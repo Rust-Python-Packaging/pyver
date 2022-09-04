@@ -33,3 +33,24 @@ pub enum PreHeader {
     /// ```
     ReleaseCandidate(Option<u32>),
 }
+
+#[cfg(test)]
+mod tests {
+    use super::PreHeader;
+
+    #[test]
+    fn test_pre_ordering() {
+        assert!(PreHeader::ReleaseCandidate(None) > PreHeader::Preview(None));
+        assert!(PreHeader::Preview(None) > PreHeader::Alpha(None));
+        assert!(PreHeader::Alpha(None) > PreHeader::Beta(None));
+
+        assert!(
+            PreHeader::ReleaseCandidate(Some(2)) > PreHeader::ReleaseCandidate(Some(1))
+        );
+        assert!(PreHeader::Preview(Some(50)) > PreHeader::Preview(Some(3)));
+        assert!(PreHeader::Alpha(Some(504)) > PreHeader::Alpha(Some(0)));
+        assert!(PreHeader::Beta(Some(1234)) > PreHeader::Beta(Some(1)));
+
+        assert!(PreHeader::ReleaseCandidate(Some(1)) > PreHeader::Beta(Some(45067885)));
+    }
+}

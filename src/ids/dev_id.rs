@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 /// 
 /// ## Example Usage
 /// ```
-/// use pyver::DevHead;
+/// use pyver::ids::DevHead;
 /// 
 /// assert!(
 ///     DevHead { dev_num: Some(0) }

@@ -10,8 +10,8 @@ use std::cmp::Ordering;
 /// 
 /// ## Example Usage
 /// ```
-/// use pyvar::PostHeader;
-/// use pyvar::PostHead;
+/// use pyver::ids::PostHeader;
+/// use pyver::ids::PostHead;
 /// 
 /// assert!(
 ///     PostHeader {
@@ -30,9 +30,25 @@ pub struct PostHeader {
 }
 
 /// `PEP-440` Post-Release Identifier Keyword
+/// This is a helper enum to tack whether it's a Revision or
+/// a Post-Release
+/// 
+/// Examples of versions that use this enum:
+/// - `1.0.post456`
+/// - `1.0rev`
 #[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub enum PostHead {
+    /// ```
+    /// use pyver::ids::PostHead;
+    /// 
+    /// PostHead::Post;
+    /// ```
     Post,
+        /// ```
+    /// use pyver::ids::PostHead;
+    /// 
+    /// PostHead::Rev;
+    /// ```
     Rev,
 }
 

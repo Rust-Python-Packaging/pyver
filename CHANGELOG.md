@@ -14,21 +14,21 @@ and this project adheres to:
 
 ### Added
 
-* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [John15321](https://github.com/John15321/)
+* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [#10](https://github.com/Allstreamer/pyver/pull/10)
 * Added CHANGELOG.md
 * Added `ids` module
 
 ### Changed
 
-* Added LICENSE with MIT License by [John15321](https://github.com/John15321/)
-* Added CI Badges to Readme by [John15321](https://github.com/John15321/)
-* Moved PackageVersion & it's tests to version.rs
+* Added LICENSE with MIT License [#10](https://github.com/Allstreamer/pyver/pull/10)
+* Added CI Badges to Readme by [#10](https://github.com/Allstreamer/pyver/pull/10)
+* Moved PackageVersion & it's tests to version.rs [#21](https://github.com/Allstreamer/pyver/pull/21)
 * Moved Identifiers & tests to `ids` module
 
 ### Docs
 
-* Added Struct descriptions to each struct
-* Added Examples to Rust Docs
+* Added Struct descriptions to each struct [#15](https://github.com/Allstreamer/pyver/pull/15)
+* Added Examples to Rust Docs [#15](https://github.com/Allstreamer/pyver/pull/15)
 
 ## [0.1.0] - 2022-09-03
 

@@ -14,14 +14,14 @@ and this project adheres to:
 
 ### Added
 
-* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [Taken from rust-pip](https://github.com/John15321/rust-pip)
+* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [John15321](https://github.com/John15321/)
 * Added CHANGELOG.md
-* Added LICENSE with MIT License by [John15321](https://github.com/John15321/)
-* Added CI Badges to Readme by [John15321](https://github.com/John15321/)
 * Added `ids` module
 
 ### Changed
 
+* Added LICENSE with MIT License by [John15321](https://github.com/John15321/)
+* Added CI Badges to Readme by [John15321](https://github.com/John15321/)
 * Moved PackageVersion & it's tests to version.rs
 * Moved Identifiers & tests to `ids` module
 

@@ -14,10 +14,10 @@ and this project adheres to:
 
 ### Added
 
-* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test)
+* Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [Taken from rust-pip](https://github.com/John15321/rust-pip)
 * Added CHANGELOG.md
-* Added LICENSE with MIT License
-* Added CI Badges to Readme
+* Added LICENSE with MIT License by [John15321](https://github.com/John15321/)
+* Added CI Badges to Readme by [John15321](https://github.com/John15321/)
 * Added `ids` module
 
 ### Changed

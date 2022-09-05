@@ -11,7 +11,9 @@ and this project adheres to:
 * [Semantic Versioning](https://semver.org/spec/v2.0.0.html). -->
 
 ## Unreleased
+
 ### Added
+
 * Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test)
 * Added CHANGELOG.md
 * Added LICENSE with MIT License
@@ -19,10 +21,12 @@ and this project adheres to:
 * Added `ids` module
 
 ### Changed
+
 * Moved PackageVersion & it's tests to version.rs
 * Moved Identifiers & tests to `ids` module
 
 ### Docs
+
 * Added Struct descriptions to each struct
 * Added Examples to Rust Docs
 

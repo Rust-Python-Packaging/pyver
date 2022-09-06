@@ -18,6 +18,7 @@ pyver = "1"
 ```
 
 The following is an example for initilizing and comparing two version strings
+
 ```Rust
 use pyver::PackageVersion;
 
@@ -28,6 +29,7 @@ assert_eq!(a < b, true);
 ```
 
 Comparing single version components
+
 ```Rust
 use pyver::PackageVersion;
 
@@ -39,6 +41,7 @@ assert_eq!(a.dev, b.dev);
 ```
 
 Seperation of version identifiers
+
 ```Rust
 use pyver::PackageVersion;
 

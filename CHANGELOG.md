@@ -20,6 +20,8 @@ and this project adheres to:
 
 ### Changed
 
+## [1.0.0] - 2022-09-06
+
 * Added LICENSE with MIT License [#10](https://github.com/Allstreamer/pyver/pull/10)
 * Added CI Badges to Readme by [#10](https://github.com/Allstreamer/pyver/pull/10)
 * Moved PackageVersion & it's tests to version.rs [#21](https://github.com/Allstreamer/pyver/pull/21)

@@ -20,6 +20,10 @@ and this project adheres to:
 
 ### Changed
 
+## [1.0.1] - 2022-09-06
+
+* [MINOR] Fixed Readme for crates.io
+
 ## [1.0.0] - 2022-09-06
 
 * Added LICENSE with MIT License [#10](https://github.com/Allstreamer/pyver/pull/10)

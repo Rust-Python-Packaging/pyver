@@ -6,7 +6,7 @@ authors = [
     "Jan Bronicki <janbronicki@gmail.com>",
 ]
 license = "MIT"
-version = "1.0.0"
+version = "1.0.1"
 keywords = ["versions", "python", "parser", "semver", "pep-440"]
 readme = "README.md"
 edition = "2021"

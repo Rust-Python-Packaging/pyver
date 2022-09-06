@@ -14,7 +14,7 @@ version numbers and for comparisons between
 
 ```Toml
 [dependencies]
-pyver = "0"
+pyver = "1"
 ```
 
 ```Rust

@@ -9,7 +9,7 @@ The `pyver` crate is available on [crates.io](https://crates.io/crates/pyver),
 you can include it in your project by adding the following to your `Cargo.toml`.
 ```toml
 [dependencies]
-pyver = "0.1"
+pyver = "1.0"
 ```
 # Example
 The following example shows how to parse a package version and

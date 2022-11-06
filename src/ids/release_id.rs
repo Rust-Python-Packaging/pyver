@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 
 /// `PEP-440` Release numbers
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd)]
+#[derive(
+    Hash, Ord, Clone, Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd,
+)]
 pub struct ReleaseHeader {
     /// Major release such as 1.0 or breaking changes
     pub major: u32,

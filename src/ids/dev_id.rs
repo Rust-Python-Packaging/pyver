@@ -17,7 +17,9 @@ use serde::{Deserialize, Serialize};
 ///     DevHead { dev_num: None }
 /// );
 /// ```
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd)]
+#[derive(
+    Hash, Ord, Clone, Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd,
+)]
 pub struct DevHead {
     pub dev_num: Option<u32>,
 }

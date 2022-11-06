@@ -2,7 +2,9 @@ use serde::{Deserialize, Serialize};
 
 /// # `PEP-440` Pre-Release identifier
 /// This identifier is used to mark a Pre-Release version
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd)]
+#[derive(
+    Hash, Ord, Clone, Debug, Serialize, Deserialize, Eq, PartialEq, PartialOrd,
+)]
 pub enum PreHeader {
     /// Present in versions like 1.1beta1 or 1.0b1 both are represented the same way
     /// ```

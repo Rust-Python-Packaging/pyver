@@ -23,7 +23,7 @@ use std::cmp::Ordering;
 ///     }
 /// );
 /// ```
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
+#[derive(Hash, Ord, Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct PostHeader {
     pub post_head: Option<PostHead>,
     pub post_num: Option<u32>,
@@ -36,7 +36,7 @@ pub struct PostHeader {
 /// Examples of versions that use this enum:
 /// - `1.0.post456`
 /// - `1.0rev`
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
+#[derive(Ord, Hash, Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub enum PostHead {
     /// ```
     /// use pyver::ids::PostHead;

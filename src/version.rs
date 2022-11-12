@@ -16,8 +16,8 @@ use std::hash::{Hash, Hasher};
 ///# use pyver::PackageVersion;
 /// let _ = PackageVersion::new("v1.0");
 /// ```
-#[derive(Ord, Clone, Derivative, Debug, Serialize, Deserialize)]
-#[derivative(PartialOrd)]
+#[derive(Clone, Derivative, Debug, Serialize, Deserialize)]
+#[derivative(PartialOrd, Ord)]
 pub struct PackageVersion {
     /// ## Original String
     /// Just holds the original string passed in when creating
@@ -328,11 +328,14 @@ mod tests {
             "1.1.dev1",
         ];
 
-        let mut some_hash = HashMap::new();
+        let mut some_hash: HashMap<PackageVersion, String> = HashMap::new();
 
-        for i in 0..versions.len() {
-            some_hash.insert(versions[i], i);
+        for i in versions {
+            some_hash.insert(PackageVersion::new(i).unwrap(), i.to_string());
         }
+
+        some_hash.get(&PackageVersion::new("1.0").unwrap());
+
         Ok(())
     }
 

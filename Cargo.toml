@@ -2,8 +2,8 @@
 name = "pyver"
 description = "Python PEP-440 Version Parser"
 authors = [
-    "Allstreamer <allstreamer.contact@gmail.com>",
-    "Jan Bronicki <janbronicki@gmail.com>",
+  "Allstreamer <allstreamer.contact@gmail.com>",
+  "Jan Bronicki <janbronicki@gmail.com>",
 ]
 license = "MIT"
 version = "1.0.0"

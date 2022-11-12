@@ -23,7 +23,7 @@ use std::cmp::Ordering;
 ///     }
 /// );
 /// ```
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
+#[derive(Hash, Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub struct PostHeader {
     pub post_head: Option<PostHead>,
     pub post_num: Option<u32>,
@@ -36,7 +36,7 @@ pub struct PostHeader {
 /// Examples of versions that use this enum:
 /// - `1.0.post456`
 /// - `1.0rev`
-#[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
+#[derive(Hash, Clone, Debug, Serialize, Deserialize, Eq, PartialEq)]
 pub enum PostHead {
     /// ```
     /// use pyver::ids::PostHead;
@@ -52,28 +52,40 @@ pub enum PostHead {
     Rev,
 }
 
+impl Ord for PostHead {
+    fn cmp(&self, _other: &Self) -> Ordering {
+        Ordering::Equal
+    }
+}
+
 impl PartialOrd for PostHead {
     fn partial_cmp(&self, _other: &Self) -> Option<Ordering> {
         Some(Ordering::Equal)
     }
 }
 
-impl PartialOrd for PostHeader {
+impl PartialOrd<Self> for PostHeader {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for PostHeader {
+    fn cmp(&self, other: &Self) -> Ordering {
         if self.post_num == other.post_num {
-            return Some(Ordering::Equal);
+            return Ordering::Equal;
         }
 
         if self.post_num.is_none() && other.post_num.is_some() {
-            return Some(Ordering::Less);
+            return Ordering::Less;
         } else if self.post_num.is_some() && other.post_num.is_none() {
-            return Some(Ordering::Greater);
+            return Ordering::Greater;
         }
 
         if self.post_num < other.post_num {
-            Some(Ordering::Less)
+            Ordering::Less
         } else {
-            Some(Ordering::Greater)
+            Ordering::Greater
         }
     }
 }

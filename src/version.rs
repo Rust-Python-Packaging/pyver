@@ -3,6 +3,7 @@ use super::validate_440_version;
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use std::hash::{Hash, Hasher};
 
 /// `PEP-440` Compliant versioning system
 ///
@@ -15,8 +16,8 @@ use std::fmt;
 ///# use pyver::PackageVersion;
 /// let _ = PackageVersion::new("v1.0");
 /// ```
-#[derive(Derivative, Debug, Serialize, Deserialize)]
-#[derivative(PartialOrd, PartialEq)]
+#[derive(Clone, Derivative, Debug, Serialize, Deserialize)]
+#[derivative(PartialOrd, Ord)]
 pub struct PackageVersion {
     /// ## Original String
     /// Just holds the original string passed in when creating
@@ -173,10 +174,44 @@ impl fmt::Display for PackageVersion {
     }
 }
 
+impl PartialEq<Self> for PackageVersion {
+    fn eq(&self, other: &Self) -> bool {
+        self.release == other.release
+            && self.local == other.local
+            && self.dev == other.dev
+            && self.epoch == other.epoch
+            && self.post == other.post
+            && self.pre == other.pre
+    }
+}
+
+impl Eq for PackageVersion {}
+
+/// The hash of the `PackageVersion` is calculated only from the `original` field.
+impl Hash for PackageVersion {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.release.hash(state);
+        self.local.hash(state);
+        self.dev.hash(state);
+        self.epoch.hash(state);
+        self.post.hash(state);
+        self.pre.hash(state);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::PackageVersion;
     use anyhow::Result;
+    use std::collections::hash_map::DefaultHasher;
+    use std::collections::HashMap;
+    use std::hash::{Hash, Hasher};
+
+    fn default_hash<T: Hash>(value: &T) -> u64 {
+        let mut hasher = DefaultHasher::new();
+        value.hash(&mut hasher);
+        hasher.finish()
+    }
 
     #[test]
     fn test_pep440_ordering() -> Result<()> {
@@ -184,8 +219,8 @@ mod tests {
             PackageVersion::new(
                 "v1!1.0-preview-921.post-516.dev-241+yeah.this.is.the.problem.with.local.versions",
             )?
-            >
-            PackageVersion::new("1.0")?
+                >
+                PackageVersion::new("1.0")?
         );
         Ok(())
     }
@@ -258,5 +293,75 @@ mod tests {
                 Err(_e) => continue,
             }
         }
+    }
+
+    #[test]
+    fn test_use_package_version_as_hash_key() -> Result<()> {
+        let versions = vec![
+            "1.0",
+            "v1.1",
+            "2.0",
+            "2013.10",
+            "2014.04",
+            "1!1.0",
+            "1!1.1",
+            "1!2.0",
+            "2!1.0.pre0",
+            "1.0.dev456",
+            "1.0a1",
+            "1.0a2.dev456",
+            "1.0a12.dev456",
+            "1.0a12",
+            "1.0b1.dev456",
+            "1.0b2",
+            "1.0b2.post345.dev456",
+            "1.0b2.post345",
+            "1.0rc1.dev456",
+            "1.0rc1",
+            "1.0",
+            "1.0+abc.5",
+            "1.0+abc.7",
+            "1.0+5",
+            "1.0.post456.dev34",
+            "1.0.post456",
+            "1.0.15",
+            "1.1.dev1",
+        ];
+
+        let mut some_hash: HashMap<PackageVersion, String> = HashMap::new();
+
+        for i in versions {
+            some_hash.insert(PackageVersion::new(i).unwrap(), i.to_string());
+        }
+
+        some_hash.get(&PackageVersion::new("1.0").unwrap());
+
+        Ok(())
+    }
+
+    #[test]
+    fn test_hashing_and_eq() -> Result<()> {
+        assert_eq!(
+            default_hash(&PackageVersion::new("1.0a1")?),
+            default_hash(&PackageVersion::new("1.0alpha1")?)
+        );
+        assert_eq!(
+            default_hash(&PackageVersion::new("1.0b")?),
+            default_hash(&PackageVersion::new("1.0beta")?)
+        );
+        assert_eq!(
+            default_hash(&PackageVersion::new("1.0r")?),
+            default_hash(&PackageVersion::new("1.0rev")?)
+        );
+        assert_eq!(
+            default_hash(&PackageVersion::new("1.0c")?),
+            default_hash(&PackageVersion::new("1.0rc")?)
+        );
+        assert_eq!(
+            default_hash(&PackageVersion::new("v1.0")?),
+            default_hash(&PackageVersion::new("1.0")?)
+        );
+
+        Ok(())
     }
 }

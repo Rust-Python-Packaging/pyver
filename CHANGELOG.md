@@ -17,6 +17,7 @@ and this project adheres to:
 * Added Github Actions for (cargo check, cargo fmt, cargo clippy, cargo test) [#10](https://github.com/Allstreamer/pyver/pull/10)
 * Added CHANGELOG.md
 * Added `ids` module
+* Added the capability to use the `PackageVersion` struct as a HashMap key [#28](https://github.com/Rust-Python-Packaging/pyver/pull/28)
 
 ### Changed
 

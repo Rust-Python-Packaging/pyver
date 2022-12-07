@@ -12,14 +12,14 @@ version numbers and for comparisons between
 
 ## Usage
 
-```Toml
+```toml
 [dependencies]
 pyver = "1"
 ```
 
 The following is an example for initilizing and comparing two version strings
 
-```Rust
+```rust
 use pyver::PackageVersion;
 
 let a = PackageVersion::new("v1.0a2.dev456").unwrap();
@@ -30,7 +30,7 @@ assert_eq!(a < b, true);
 
 Comparing single version components
 
-```Rust
+```rust
 use pyver::PackageVersion;
 
 let a = PackageVersion::new("1!1.323.dev2").unwrap();
@@ -42,7 +42,7 @@ assert_eq!(a.dev, b.dev);
 
 Seperation of version identifiers
 
-```Rust
+```rust
 use pyver::PackageVersion;
 
 let version = PackageVersion::new("v1.23.dev2").unwrap();
